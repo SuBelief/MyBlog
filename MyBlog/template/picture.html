@@ -1,0 +1,23 @@
+{% extends "listpic.html" %}
+{% block container %}
+
+<div class="container">
+  <div class="con_content">
+    <div class="about_box">
+      <h2 class="nh1"><span>您现在的位置是：<a href="/" target="_blank">网站首页</a>>><a href="#" target="_blank">个人相册</a></span><b>个人相册</b></h2>
+
+      <div class="lispic">
+        <ul>
+           {% for article in articleList %}
+            <li><a href="/"><img src="/static/{{article.pic}}"><span>{{ article.title }}</span></a></li>
+            {% endfor %}
+        </ul>
+      </div>
+
+      <div class="pagelist">当前页:{{ page }} <a href="/picture/1">首页</a> {% if articleList.has_previous %} <a href="/picture/{{ articleList.previous_page_number }}">上一页</a>{% endif %} {% if articleList.has_next %}<a href="/picture/{{ articleList.next_page_number}}">下一页</a> {% endif %}<a href="/picture/{{ Articles.num_pages }}">尾页</a> 共{{  Articles.num_pages }}页</div>
+  </div>
+</div>
+</div>
+<div class="blank"></div>
+
+{% endblock %}

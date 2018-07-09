@@ -1,0 +1,38 @@
+{% extends "base.html" %}
+
+{% block title %}
+      博客列表页
+{% endblock %}
+
+{%  block style %}
+    <link href="/static/css/main.css" rel="stylesheet">
+    <!--<link href="/static/css/index.css" rel="stylesheet">-->
+    <!--<script src="/static/js/modernizr.js"></script>-->
+{%  endblock  %}
+
+{%  block content %}
+<div class="container">
+  <div class="con_content">
+    <div class="about_box">
+      <h2 class="nh1"><span>您现在的位置是：<a href="/index.html" target="_blank">网站首页</a>>><a href="#" target="_blank">文言文</a></span><b>文言文</b></h2>
+      <div class="dtxw box">
+          {% for article in articleList %}
+        <li>
+          <div class="dttext f_l">
+            <ul>
+              <h2><a href="/article/{{ article.id }}/">{{ article.title }}</a></h2>
+              <p>{{ article.description|safe }}</p>
+              <span>{{ article.time}}</span>
+            </ul>
+          </div>
+          <div class="xwpic f_r"><a href="/"><img src="/static/{{article.pic}}"></a></div>
+        </li>
+          {%  endfor %}
+      </div>
+      <div class="pagelist">当前页:{{ page }} <a href="/newslistpic/1">首页</a> {% if articleList.has_previous %} <a href="/newslistpic/{{ articleList.previous_page_number }}">上一页</a>{% endif %} {% if articleList.has_next %}<a href="/newslistpic/{{ articleList.next_page_number}}">下一页</a> {% endif %}<a href="/newslistpic/{{ Articles.num_pages }}">尾页</a> 共{{  Articles.num_pages }}页</div>
+    </div>
+  </div>
+  <div class="blank"></div>
+  <!-- container代码 结束 -->
+</div>
+{% endblock %}

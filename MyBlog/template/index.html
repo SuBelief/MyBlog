@@ -1,0 +1,18 @@
+{% extends "indexed.html" %}
+
+{% block container %}
+    <div class="container">
+        {% for article in articleList %}
+        <div class="bloglist f_l">
+          <h3><a href="/article/{{ article.id }}/">{{ article.title }}</a></h3>
+          <figure><img src="/static/{{ article.pic }}" alt="{{ article.title }}"></figure>
+          <ul>
+            <p> {{ article.description|safe }}</p>
+            <a title="{{ article.title }}" href="/article/{{ article.id }}/"  class="readmore">阅读全文&gt;&gt;</a>
+          </ul>
+          <p class="dateview"><span>{{ article.time }}</span><span>作者：{{ article.author }}</span></p>
+        </div>
+       {% endfor %}
+    </div>
+{% endblock %}
+</html>
